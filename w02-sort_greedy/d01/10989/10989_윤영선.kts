@@ -1,29 +1,23 @@
 #!/usr/bin/env kotlin
 
 import java.io.*
+
 fun main() {
     val bw = BufferedWriter(OutputStreamWriter(System.`out`))
 
     val n = readLine()!!.toInt()
-    val arr = IntArray(n) {
-        readLine()!!.toInt()
+    val arr = IntArray(100001)
+
+    repeat(n) {
+        arr[readLine()!!.toInt()] += 1
     }
 
-    // 버블 정렬
-    fun bubbleSort() {
-        for(i in 0 until n) {
-            for(j in 0 until n-1-i) {
-                if(arr[j] > arr[j+1]) {
-                    val tmp = arr[j]
-                    arr[j] = arr[j+1]
-                    arr[j+1] = tmp
-                }
+    for(i in 0 until 10001) {
+        if(arr[i] > 0) {
+            for(j in 0 until arr[i]) {
+                bw.write("$i\n")
             }
         }
-    }
-
-    arr.forEach {
-        bw.write("$it\n")
     }
 
     bw.flush()
